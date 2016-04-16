@@ -30,14 +30,14 @@
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 @session.get("user").map { user =>
-
+                    <li><a href="/me"><span class="chip deep-purple-text">My Movies</span></a></li>
                 }.getOrElse {
                     <li><a href="/me"><span class="chip deep-purple-text">Login</span></a></li>
                 }
             </ul>
             <ul class="side-nav" id="mobile-demo">
                 @session.get("user").map { user =>
-
+                    <li><a href="/me"><span class="chip deep-purple-text">My Movies</span></a></li>
                 }.getOrElse {
                     <li><a href="/me"><span class="chip deep-purple-text">Login</span></a></li>
                 }
