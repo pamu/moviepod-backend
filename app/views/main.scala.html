@@ -1,7 +1,7 @@
 @(title: String)(content: Html)(implicit session: play.api.mvc.Session)
 
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 
 <head>
     <title>@title</title>
@@ -17,6 +17,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 
     <script type="text/javascript" src='@routes.Assets.at("js/card.js")'></script>
+    <script type="text/javascript" src='@routes.Assets.at("js/search.js")'></script>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -27,27 +28,22 @@
     <nav class="deep-purple darken-1">
         <div class="nav-wrapper container">
             <a href="/" class="brand-logo">@title</a>
-            
-            <form>
-                <div class="input-field">
-                    <input id="search" type="search" required>
-                        <label for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i>
-                </div>
-            </form>
-
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 @session.get("user").map { user =>
+                    <li><a><i class="material-icons" onclick="search();">search</i></a></li>
                     <li><a href="/myMovies"><span class="chip deep-purple-text">My Movies</span></a></li>
                 }.getOrElse {
+                    <li><a><i class="material-icons" onclick="search();">search</i></a></li>
                     <li><a href="/login"><span class="chip deep-purple-text">Login</span></a></li>
                 }
             </ul>
             <ul class="side-nav" id="mobile-demo">
                 @session.get("user").map { user =>
+                    <li><a><i class="material-icons" onclick="search();">search</i></a></li>
                     <li><a href="/myMovies"><span class="chip deep-purple-text">My Movies</span></a></li>
                 }.getOrElse {
+                    <li><a><i class="material-icons" onclick="search();">search</i></a></li>
                     <li><a href="/login"><span class="chip deep-purple-text">Login</span></a></li>
                 }
             </ul>
@@ -56,6 +52,11 @@
 
     <div class="section">
         <div class="container">
+            <div class="row">
+                <div>
+
+                </div>
+            </div>
             @content
         </div>
     </div>
