@@ -16,5 +16,9 @@ class Application @Inject()(override val userRepo: UserRepo) extends Controller 
     Future(Ok(views.html.index("Movie Pod")(req.flash)))
   }
 
+  def myMovies = Action.async { implicit req =>
+    Future(Ok(views.html.myMovies("Movie Pod")(req.flash)))
+  }
+
 }
 
