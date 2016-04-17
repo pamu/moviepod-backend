@@ -15,7 +15,7 @@
                             '<div class="card-content deep-purple-text">' +
                                 '<div id="title_' + cardId + ' class="truncate"">' + title + '</div>' +
                                 '<div>' + html + '</div>' +
-                                '<button class="btn">Add to WatchList</button>' +
+                                '<i id="' + cardId + '"class="material-icons">library_add</i>' +
                             '</div>' +
                             '<div class="card-action" id="card_action_' + cardId + '">' +
                                 '<a id="link_' + cardId + '" href="https://www.imdb.com/title/' + cardId + '">' + 'IMDB' + '</a>' +
