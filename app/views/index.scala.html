@@ -3,27 +3,18 @@
 @main("Movie Pod") {
 
     <script type="text/javascript">
-        $(function() {
-            var text = $("#search").val();
-            if (text.length > 0) {
-                fetch('https://www.omdbapi.com/?s=' + text.trim() + '&page=1');
-            } else {
-                fetch("https://www.omdbapi.com/?s=Batman&page=1");
-            }
-        });
+
     </script>
 
     <div class="row">
-        <form>
-            <div class="input-field col m6 offset-m3 s12">
-                <i class="material-icons prefix">search</i>
-                <input id="search" placeholder="Search" type="text" class="validate">
-            </div>
-        </form>
+        <div class="input-field col m6 offset-m3 s12">
+            <i class="material-icons prefix">search</i>
+            <input id="search" placeholder="Search" type="text" class="validate">
+        </div>
     </div>
 
     <div class="section">
-        <div class="chip deep-purple darken-1 white-text">Recent Movies</div>
+        <div class="chip deep-purple darken-1 white-text">Movies</div>
     </div>
 
     <div class="deep-purple darken-1 divider"></div>
