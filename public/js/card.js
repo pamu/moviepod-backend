@@ -8,7 +8,7 @@
         }
 
              return  '<div id="card_' + cardId + '" class="col s6 m3">' +
-                        '<div class="card">' +
+                        '<div class="card medium">' +
                             '<div class="card-image">' +
                                 '<img style="width: 100%" height="200" src="' + poster + '">' +
                              '</div>' +
