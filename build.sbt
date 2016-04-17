@@ -1,4 +1,4 @@
-name := "blog"
+name := "movie-pod"
 
 version := "1.0.0"
 
