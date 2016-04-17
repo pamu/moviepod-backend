@@ -1,5 +1,5 @@
 
-    function getCard(cardId, title, tags, summary, link) {
+    function getCard(cardId, title, tags, poster) {
 
         var html = '';
 
@@ -7,19 +7,17 @@
             html = html + ('<div class="chip" style="margin: 2px">' +  tags[i] + '</div>');
         }
 
-             return  '<div id="card_' + cardId + '" class="col s12 m6">' +
+             return  '<div id="card_' + cardId + '" class="col s6 m3">' +
                         '<div class="card">' +
+                            '<div class="card-image">' +
+                                '<img style="width: 100%" height="200" src="' + poster + '">' +
+                             '</div>' +
                             '<div class="card-content deep-purple-text">' +
-                                '<div id="title_' + cardId + '" class="card-title"><h5>' + title + '</h5></div>' +
-                                    '<br/>' +
+                                '<div id="title_' + cardId + '">' + title + '</div>' +
                                     '<div>' + html + '</div>' +
-                                        '<br/>' +
-                                            '<div class="grey-text text-darken-3">' +
-                                                '<p id="summary_' + cardId + '">' + summary + "</p>" +
-                                            '</div>' +
                             '</div>' +
                             '<div class="card-action" id="card_action_' + cardId + '">' +
-                                '<a id="link_' + cardId + '" href="' + link + '">' + 'Read' + '</a>' +
+                                '<a id="link_' + cardId + '" href="https://www.imdb.com/title/' + cardId + '">' + 'IMDB' + '</a>' +
                             '</div>' +
                         '</div>' +
                     '</div>'

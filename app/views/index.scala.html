@@ -2,11 +2,21 @@
 
 @main("Movie Pod") {
 
-    <script type="text/javascript">
+    <script type="text/javascript" xmlns="http://www.w3.org/1999/html">
+        fetch("http://www.omdbapi.com/?s=Batman&page=1");
     </script>
 
+    <div class="row">
+        <form>
+            <div class="input-field col m6 offset-m3 s12">
+                <i class="material-icons prefix">search</i>
+                <input id="search" placeholder="Search" type="text" class="validate">
+            </div>
+        </form>
+    </div>
+
     <div class="section">
-        <div class="chip deep-purple darken-1 white-text">Recent Posts</div>
+        <div class="chip deep-purple darken-1 white-text">Recent Movies</div>
     </div>
 
     <div class="deep-purple darken-1 divider"></div>
@@ -14,17 +24,9 @@
     <br/>
 
     <div class="row">
-        <div id="x_posts">
+        <div id="movies">
 
         </div>
-    </div>
-    <div class="section">
-        <div class="chip deep-purple darken-1 white-text">All Posts</div>
-    </div>
-
-    <div class="deep-purple darken-1 divider"></div>
-
-    <div id="xs_posts">
     </div>
 }
 
