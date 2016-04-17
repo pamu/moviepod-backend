@@ -13,7 +13,7 @@
                                 '<img style="width: 100%" height="200" src="' + poster + '">' +
                              '</div>' +
                             '<div class="card-content deep-purple-text">' +
-                                '<div id="title_' + cardId + '">' + title + '</div>' +
+                                '<div id="title_' + cardId + ' class="truncate"">' + title + '</div>' +
                                     '<div>' + html + '</div>' +
                             '</div>' +
                             '<div class="card-action" id="card_action_' + cardId + '">' +
