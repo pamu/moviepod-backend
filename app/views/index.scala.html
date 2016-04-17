@@ -3,7 +3,14 @@
 @main("Movie Pod") {
 
     <script type="text/javascript" xmlns="http://www.w3.org/1999/html">
-        fetch("http://www.omdbapi.com/?s=Batman&page=1");
+        $(function() {
+            var text = $("#search").val();
+            if (text.length > 0) {
+                fetch('http://www.omdbapi.com/?s=' + text.trim() + '&page=1');
+            } else {
+                fetch("http://www.omdbapi.com/?s=Batman&page=1");
+            }
+        });
     </script>
 
     <div class="row">

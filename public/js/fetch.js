@@ -10,7 +10,7 @@ function fetch(url) {
         }
     }).done(function(data) {
         //console.log(JSON.stringify(data));
-    }).fail(function() {
+    }).fail(function(error) {
         $("#movies").html("error loading results, refresh to try again.");
     }).always(function() {
         console.log("network operation done");
