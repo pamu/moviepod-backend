@@ -1,6 +1,5 @@
 package models
 
-import java.sql.Timestamp
 import javax.inject.{Inject, Singleton}
 
 import play.api.db.slick.DatabaseConfigProvider
@@ -12,7 +11,7 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 /**
   * Created by pnagarjuna on 04/04/16.
   */
-case class User(id: Long, name: String, email: String, key: String, updated: Timestamp, created: Timestamp)
+case class User(name: String, id: Option[Long] = None)
 
 @Singleton
 class UserRepo @Inject()(protected val dbConfigProvider: DatabaseConfigProvider) {
@@ -25,20 +24,20 @@ class UserRepo @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
     db.run(Users.filter(_.id === id).result.head)
   }
 
+  def findByName(name: String): Future[User] = {
+      db.run(Users.filter(_.name === name).result.head)
+  }
+
+  def create(user: User): Future[Long] = {
+    db.run(Users.returning(Users.map(_.id)) += user)
+  }
+
   private class UserTable(tag: Tag) extends Table[User](tag, "USER") {
     def id = column[Long]("ID", O.AutoInc, O.PrimaryKey)
 
     def name = column[String]("NAME")
 
-    def email = column[String]("EMAIL")
-
-    def key = column[String]("KEY")
-
-    def updated = column[Timestamp]("UPDATED_AT")
-
-    def created = column[Timestamp]("CREATED_AT")
-
-    def * = (id, name, email, key, updated, created) <>(User.tupled, User.unapply)
+    def * = (name, id.?) <>(User.tupled, User.unapply)
   }
 
 }
