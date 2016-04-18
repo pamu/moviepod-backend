@@ -1,4 +1,4 @@
-function watchlist(userId, name, id) {
+function watchlist(name, id) {
     $.ajax(
         url: "/addMovie",
         type: 'POST',
