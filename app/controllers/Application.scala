@@ -12,12 +12,16 @@ import play.api.libs.functional.syntax._
 /**
   * Created by pnagarjuna on 24/03/16.
   */
-case class MovieData(name: String, imdb: String)
+case class MovieData(userId: Long, name: String, imdb: String)
 
 class Application @Inject()(override val userRepo: UserRepo, val movieRepo: MovieRepo) extends Controller with UserRepoProvider with Secured {
 
   def index = Action.async { implicit req =>
-    Future(Ok(views.html.index("Movie Pod")(req.flash)))
+    req.session.get("id").map { id =>
+      Future(Ok(views.html.index(id)(req.flash)))
+    }.getOrElse {
+      Future(Ok(views.html.index("-1")(req.flash)))
+    }
   }
 
   def myMovies = withUser(parse.anyContent) { user => implicit req =>
@@ -34,6 +38,7 @@ class Application @Inject()(override val userRepo: UserRepo, val movieRepo: Movi
 
 
   implicit val movieDataReads: Reads[MovieData] = (
+    (JsPath \ "userId").read[Long] and
     (JsPath \ "name").read[String] and
       (JsPath \ "imdb").read[String]
     ) (MovieData.apply _)

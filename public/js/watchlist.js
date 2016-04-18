@@ -1,9 +1,9 @@
-function watchlist(name, id) {
+function watchlist(userId, name, id) {
     $.ajax(
         url: "/addMovie",
         type: 'POST',
         dataType: 'application/json',
-        data: {'name': name, 'imdb': id},
+        data: {'userId': $("#id").text(), 'name': name, 'imdb': id},
         success: function(result) {
                 console.log('result: ' + JSON.stringify(result));
             })
