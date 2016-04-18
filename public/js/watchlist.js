@@ -1,10 +1,11 @@
-function watchlist(name, id) {
+$(function watchlist(name, id) {
     $.ajax(
-        url: "/addMovie",
+        url: '/addMovie',
         type: 'POST',
         dataType: 'application/json',
-        data: {'userId': $("#id").text(), 'name': name, 'imdb': id},
+        data: {'userId': parseInt($("#id").text()), 'name': name, 'imdb': id},
         success: function(result) {
                 console.log('result: ' + JSON.stringify(result));
-            })
-}
+            }
+         )
+})
