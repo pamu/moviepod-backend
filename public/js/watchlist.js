@@ -1,5 +1,10 @@
 function watchlist(name, id) {
-    $.post("/addMovie", {'name': name, 'imdb': id}, function(result) {
-        console.log('result: ' + JSON.stringify(result));
-    })
+    $.ajax(
+        url: "/addMovie",
+        type: 'POST',
+        dataType: 'application/json',
+        data: {'name': name, 'imdb': id},
+        success: function(result) {
+                console.log('result: ' + JSON.stringify(result));
+            })
 }
