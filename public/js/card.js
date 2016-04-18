@@ -18,7 +18,7 @@
                             '</div>' +
                             '<div class="card-action" id="card_action_' + cardId + '">' +
                                 '<a id="link_' + cardId + '" href="https://www.imdb.com/title/' + cardId + '">' + 'IMDB' + '</a>' +
-                                '<a class="btn" onclick="watchlist("' + title + '","' + cardId + '")" id="' + cardId + '">Watch List</a>'
+                                '<a class="btn" onclick="watchlist(\'' + title + '\',\'' + cardId + '\')" id="' + cardId + '">Watch List</a>'
                             '</div>' +
                         '</div>' +
                     '</div>'
