@@ -30,7 +30,7 @@ class Auth @Inject()(override val userRepo: UserRepo) extends Controller with Us
       data => {
         val userF = userRepo.findByName(data)
         userF.map { user =>
-          Redirect(routes.Application.myMovies).withSession("id" -> user.id.toString)
+          Redirect(routes.Application.myMovies).withSession("id" -> user.id.get.toString)
         }.recoverWith { case th =>
           userRepo.create(User(data)).map { id  =>
             Redirect(routes.Application.myMovies).withSession("id" -> id.toString)
