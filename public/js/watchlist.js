@@ -1,2 +1,3 @@
 function watchlist() {
+    $.get("")
 }
