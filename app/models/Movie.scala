@@ -29,7 +29,7 @@ class MovieRepo @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
     db.run(Movies.returning(Movies.map(_.id)) += movie)
   }
 
-  private class MovieTable(tag: Tag) extends Table[Movie](tag, "MOVIE_TABLE") {
+  private class MovieTable(tag: Tag) extends Table[Movie](tag, "MOVIE") {
     def name = column[String]("NAME")
     def imdb = column[String]("IMDB")
     def userId = column[Long]("USER_ID")
