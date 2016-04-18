@@ -40,5 +40,4 @@ class Auth @Inject()(override val userRepo: UserRepo) extends Controller with Us
     )
   }
 
-
 }
