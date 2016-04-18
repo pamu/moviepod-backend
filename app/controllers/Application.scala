@@ -58,7 +58,7 @@ class Application @Inject()(override val userRepo: UserRepo, val movieRepo: Movi
     }
   }
 
-  def logout = withUser(parse.json) { user => implicit req =>
+  def logout = Action.async { implicit req =>
     Future(Redirect(routes.Application.index).withNewSession)
   }
 
