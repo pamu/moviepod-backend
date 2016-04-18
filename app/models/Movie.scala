@@ -2,6 +2,7 @@ package models
 
 import javax.inject.{Inject, Singleton}
 
+import controllers.MovieData
 import play.api.db.slick.DatabaseConfigProvider
 import slick.driver.JdbcProfile
 
@@ -21,6 +22,11 @@ class MovieRepo @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
 
   def findMoviesByUserId(userId: Long): Future[Seq[Movie]] = {
     db.run(Movies.filter(_.userId === userId).result)
+  }
+
+  def addMovie(movieData: MovieData, userId: Long): Future[Long] = {
+    val movie = Movie(movieData.name, movieData.imdb, userId)
+    db.run(Movies.returning(Movies.map(_.id)) += movie)
   }
 
   private class MovieTable(tag: Tag) extends Table[Movie](tag, "MOVIE_TABLE") {

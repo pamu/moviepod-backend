@@ -6,11 +6,14 @@ import play.api.mvc.{Action, Controller}
 
 import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.libs.json.{JsValue, Json, Writes}
+import play.api.libs.json._
+import play.api.libs.functional.syntax._
 
 /**
   * Created by pnagarjuna on 24/03/16.
   */
+case class MovieData(name: String, imdb: String)
+
 class Application @Inject()(override val userRepo: UserRepo, val movieRepo: MovieRepo) extends Controller with UserRepoProvider with Secured {
 
   def index = Action.async { implicit req =>
@@ -29,9 +32,24 @@ class Application @Inject()(override val userRepo: UserRepo, val movieRepo: Movi
         "name" -> o.name)
   }
 
-  //implicit val movieReads =
+
+  implicit val movieDataReads: Reads[MovieData] = (
+    (JsPath \ "name").read[String] and
+      (JsPath \ "imdb").read[String]
+    ) (MovieData.apply _)
+
   def addMovie = withUser(parse.json) { user => implicit req =>
-    Future(Ok(""))
+    req.body.validate[MovieData] match {
+      case success: JsSuccess[MovieData] => {
+        movieRepo.addMovie(success.value, user.id.get).map { id =>
+          Ok(Json.obj("success" -> true))
+        }.recover { case th =>
+          Ok(Json.obj("success" -> false))
+        }
+      }
+      case error: JsError => Future(Ok(Json.obj("success" -> false)))
+    }
+
   }
 
   def movieList = withUser(parse.json) { user => implicit req =>
