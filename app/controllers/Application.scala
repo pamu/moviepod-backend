@@ -20,7 +20,7 @@ class Application @Inject()(override val userRepo: UserRepo, val movieRepo: Movi
     Future(Ok(views.html.index("Movie Pod")(req.flash)))
   }
 
-  def myMovies = Action.async { implicit req =>
+  def myMovies = withUser(parse.anyContent) { user => implicit req =>
     Future(Ok(views.html.myMovies("Movie Pod")(req.flash)))
   }
 
