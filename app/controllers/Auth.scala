@@ -18,7 +18,7 @@ class Auth extends Controller {
 
   val loginForm = Form(
     single(
-      "username" -> nonEmptyText(minLength = 6, maxLength = 20)
+      "username" -> nonEmptyText(minLength = 1, maxLength = 20)
     )
   )
 
